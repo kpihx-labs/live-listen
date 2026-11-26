@@ -1,0 +1,48 @@
+[project]
+name        = "k-live-listen"
+version     = "0.2.0"
+description = "KpiX sovereign live listening — PipeWire capture + local whisper STT + progressive summary via local OpenVINO server"
+authors     = [{ name = "KpihX", email = "kapoivha@gmail.com" }]
+readme      = "README.md"
+license     = { text = "MIT" }
+requires-python = ">=3.12"
+
+# Zero runtime dependencies (stdlib only) so `uv tool install` stays instant.
+dependencies = []
+
+[project.scripts]
+live-listen = "live_listen.cli:main"
+
+[tool.uv]
+package = true
+
+[build-system]
+requires      = ["uv_build>=0.10.3,<0.11.0"]
+build-backend = "uv_build"
+
+[tool.uv.build-backend]
+module-name = "live_listen"
+
+# ── Development dependencies ─────────────────────────────────────────────────
+[dependency-groups]
+dev = [
+    "pytest",
+]
+
+[tool.ruff]
+line-length = 120
+target-version = "py312"
+
+[tool.ruff.lint]
+# Ported codebase style, kept intentionally :
+# UP031 = % formatting used consistently in all log lines.
+# BLE001 = broad network excepts are intentional (full error display, old summary kept).
+# DTZ005 = naive local timestamps for [HH:MM:SS] transcript stamps.
+# PLW1510 = run() helper returns codes by design (callers branch on them).
+ignore = ["UP031", "BLE001", "DTZ005", "PLW1510"]
+
+[tool.pyright]
+typeCheckingMode = "basic"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]

@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+*.whl
+
+# uv / venv
+.venv/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Archived session artefacts : ~20 MB of recorded wav chunks from past runs.
+# They are historical evidence, not source. Never committed.
+sessions/
+
+# Runtime outputs, when a session is launched from the project directory
+/transcription.txt
+/resume.txt
